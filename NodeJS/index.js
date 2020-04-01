@@ -1,31 +1,12 @@
 const express = require('express');
 const app = express();
+//Create  Router
+const postRequest = require('./routes/Post/postWithParams');
+const getRequest = require('./routes/Get/getWithParams');
 
-//GET Request
-app.get('/',(req,res) => {
-    return res.json('GET Request');
-});
+app.use(postRequest);
+app.use(getRequest);
 
-//GET Request paramets
-app.get('/:id',(req,res) => {
-    const _id = req.params.id;
-    return res.json(_id);
-});
-
-//POST Request
-app.post('/',(req,res) => {
-    return res.json('POST Request');
-});
-
-//PUT Request
-app.put('/',(req,res) => {
-    return res.json('PUT Request');
-});
-
-//DELETE Request
-app.delete('/',(req,res) => {
-    return res.json('DELETE Request');
-});
 
 const PORT = process.env.PORT || 5000;
 
