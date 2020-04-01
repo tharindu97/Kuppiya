@@ -6,6 +6,12 @@ app.get('/',(req,res) => {
     return res.json('GET Request');
 });
 
+//GET Request paramets
+app.get('/:id',(req,res) => {
+    const _id = req.params.id;
+    return res.json(_id);
+});
+
 //POST Request
 app.post('/',(req,res) => {
     return res.json('POST Request');
