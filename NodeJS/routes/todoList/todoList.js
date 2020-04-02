@@ -33,4 +33,12 @@ router.get('/getId/:id',(req,res) =>{
     return res.json(todo);
 });
 
+//Add todo
+router.post('/add',(req,res)=>{
+    const body = req.body;
+    body.id = uuid();
+    toDos = [...toDos, body]
+    return res.json(toDos);
+});
+
 module.exports = router;
