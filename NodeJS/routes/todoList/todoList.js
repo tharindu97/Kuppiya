@@ -17,7 +17,7 @@ let toDos =[
 const router = Router();
 //Get all Todo
 router.get('/todo',(req,res) =>{
-    return res.json(toDos);
+    return res.status(200).json(toDos);
 });
 
 //Get One Todo By index
@@ -30,7 +30,10 @@ router.get('/todo/:num',(req,res) =>{
 router.get('/getId/:id',(req,res) =>{
     const id = req.params.id;
     const todo = toDos.filter(todo => todo.id === id);
-    return res.json(todo);
+    if(!todo){
+        return res.status(204).json('Todo Not Found');
+    }
+    return res.status(200).json(todo);
 });
 
 //Add todo
@@ -38,7 +41,7 @@ router.post('/add',(req,res)=>{
     const body = req.body;
     body.id = uuid();
     toDos = [...toDos, body]
-    return res.json(toDos);
+    return res.status(201).json(toDos);
 });
 
 //Deleted todo
@@ -46,11 +49,11 @@ router.delete('/delete/:id',(req,res) =>{
     const id = req.params.id;
     const isHere = toDos.some(todo => todo.id === id);
     if(!isHere){
-        return res.json('Todo Not Found');
+        return res.status(204).json('Todo Not Found');
     }
     const newTodo = toDos.filter(toDo => toDo.id !== id);
     toDos = newTodo;
-    return res.json(toDos);
+    return res.status(200).json(toDos);
 });
 
 //Edite todo
@@ -73,12 +76,12 @@ router.put('/edit/:id', (req,res) =>{
 
     const index = toDos.findIndex(todo => todo.id === id);
     if(index<0){
-        return res.json('Todo Not Found');
+        return res.status(204).json('Todo Not Found');
     }
     toDos[index].title = title;
     toDos[index].description = description;
 
-    return res.json(toDos);
+    return res.status(200).json(toDos);
 }); 
 
 module.exports = router;
