@@ -55,7 +55,7 @@ router.delete('/delete/:id',(req,res) =>{
 
 //Edite todo
 router.put('/edit/:id', (req,res) =>{
-    const id = req.params.id;
+    /*const id = req.params.id;
     const body = req.body;
     const isHere = toDos.some(todo => todo.id === id);
     if(!isHere){
@@ -66,6 +66,18 @@ router.put('/edit/:id', (req,res) =>{
 
     let newTodos = {id, ...body};
     toDos = [newTodos , ...toDos]
+    return res.json(toDos);*/
+
+    const id = req.params.id;
+    const { title, description } = req.body;
+
+    const index = toDos.findIndex(todo => todo.id === id);
+    if(index<0){
+        return res.json('Todo Not Found');
+    }
+    toDos[index].title = title;
+    toDos[index].description = description;
+
     return res.json(toDos);
 }); 
 
