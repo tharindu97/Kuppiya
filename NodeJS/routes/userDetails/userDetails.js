@@ -78,5 +78,20 @@ router.delete('/delete/:id',(req,res) =>{
 });
 
 //User Update
+router.put('/update/:id',(req,res) =>{
+    const id = req.params.id;
+    const { name, email, age, contact } = req.body;
+    const index = users.findIndex(user => user.id === id);
+    if(index<0){
+        return res.status(204).json('user is Not Found');
+    }
+    users[index].name = name;
+    users[index].email = email;
+    users[index].age = age;
+    users[index].contact = contact
+    
+    return res.status(200).json(users);
+});
+
 
 module.exports = router;
