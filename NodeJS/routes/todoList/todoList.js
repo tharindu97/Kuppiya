@@ -53,4 +53,20 @@ router.delete('/delete/:id',(req,res) =>{
     return res.json(toDos);
 });
 
+//Edite todo
+router.put('/edit/:id', (req,res) =>{
+    const id = req.params.id;
+    const body = req.body;
+    const isHere = toDos.some(todo => todo.id === id);
+    if(!isHere){
+        return res.json('Todo Not Found');
+    }
+    const newTodo = toDos.filter(toDo => toDo.id !== id);
+    toDos = newTodo;
+
+    let newTodos = {id, ...body};
+    toDos = [newTodos , ...toDos]
+    return res.json(toDos);
+}); 
+
 module.exports = router;
