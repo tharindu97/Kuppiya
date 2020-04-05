@@ -32,7 +32,7 @@ app.listen(PORT, () =>{
 
 const Todos = mongoose.model('todos');
 
-const addData = async () => {
+/*const addData = async () => {
     try {
         const todo = new Todos({
             title:'Nodejs',
@@ -44,4 +44,26 @@ const addData = async () => {
         console.log(error.message);
     }
 };
-addData();
+addData();*/
+/*
+//Get Data
+const getData = async () => {
+    try {
+        const todo = await Todos.find();
+        console.log(todo);
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+getData();
+*/
+/*
+//Deleted data
+(async () =>{
+    try {
+        await Todos.findByIdAndDelete('');
+        console.log('Deleted Id');
+    } catch (error) {
+        console.log(error.message);
+    }
+})();*/
