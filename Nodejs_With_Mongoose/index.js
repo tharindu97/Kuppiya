@@ -67,3 +67,18 @@ getData();
         console.log(error.message);
     }
 })();*/
+/*
+//update data
+const updateData = async () => {
+    try {
+        await Todos.updateOne(
+            {_id:'id'},
+            { $set: { title:'update title', description:'update description' }}
+        );
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+updateData();
+*/
