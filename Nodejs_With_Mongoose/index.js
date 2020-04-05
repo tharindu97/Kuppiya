@@ -27,3 +27,21 @@ const PORT = process.env.PORT || 5100
 app.listen(PORT, () =>{
     console.log(`Server Started at ${PORT}`);
 });
+
+//Add data
+
+const Todos = mongoose.model('todos');
+
+const addData = async () => {
+    try {
+        const todo = new Todos({
+            title:'Nodejs',
+            description:'Learn Nodejs'
+        });
+        await todo.save();
+        console.log('Data Saved');
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+addData();
