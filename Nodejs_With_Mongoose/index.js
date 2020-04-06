@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
 const connectDB = require('./config/db');
-
 //Models
 require('./models/todos');
+//Http Request
+const getTodos = require('./routes/todos/GetTodos');
+const getTodo = require('./routes/todos/GetTodo');
+
+
+
+app.use(getTodo);
 
 //Connect mongodb
 connectDB();
