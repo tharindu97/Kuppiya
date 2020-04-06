@@ -1,11 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import HeaderOne from './components/HeaderOne';
 
 
 function App() {
   return (
     <div>
-      hello thari baba
+      <HeaderOne/>
+      <h1>hello thari baba</h1>
     </div>
   );
 }
