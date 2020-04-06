@@ -9,7 +9,7 @@ router.get('/api/:id', async(req,res) =>{
         const id = req.params.id;
         const todos = await Todos.findById(id);
         if(!todos){
-            return res.status(204).json('NOt Found Id');
+            return res.status(400).json('NOt Found Id');
         }
         return res.status(200).json(todos);
     } catch (error) {

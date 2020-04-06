@@ -10,6 +10,7 @@ const getTodo = require('./routes/todos/GetTodo');
 
 
 app.use(getTodo);
+app.use(getTodos);
 
 //Connect mongodb
 connectDB();
