@@ -3,24 +3,26 @@ const app = express();
 const connectDB = require('./config/db');
 //Models
 require('./models/todos');
-//Http Request
+// body paser wenuwat && data add middleware
+app.use(express.json());
+
 const getTodos = require('./routes/todos/GetTodos');
 const getTodo = require('./routes/todos/GetTodo');
+const saveTodo = require('./routes/todos/SaveTodo');
 
-
-
-app.use(getTodo);
-app.use(getTodos);
 
 //Connect mongodb
 connectDB();
-
+// create port
 const PORT = process.env.PORT || 5100
 app.listen(PORT, () =>{
     console.log(`Server Started at ${PORT}`);
 });
 
-
+//Http Request
+app.use(getTodo);
+app.use(getTodos);
+app.use(saveTodo);
 
 
 
