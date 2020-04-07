@@ -10,6 +10,7 @@ const getTodos = require('./routes/todos/GetTodos');
 const getTodo = require('./routes/todos/GetTodo');
 const saveTodo = require('./routes/todos/SaveTodo');
 const deleteTodo = require('./routes/todos/DeleteTodos');
+const editTodo = require('./routes/todos/EditTodos');
 
 
 //Connect mongodb
@@ -25,6 +26,7 @@ app.use(getTodo);
 app.use(getTodos);
 app.use(saveTodo);
 app.use(deleteTodo);
+app.use(editTodo);
 
 
 
