@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import User from './user';
 
 function Hello(){
     return (
-        <div>Hello World</div>
+        <div>
+            <div>Thari baba</div>
+            <User/>
+        </div>
     )
 }
 
