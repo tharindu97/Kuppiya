@@ -6,7 +6,7 @@ function Hello(){
     return (
         <div>
             <div>Thari baba</div>
-            <User/>
+            <User firstName='Tharindu' lastName='kavishna'/>
         </div>
     )
 }
