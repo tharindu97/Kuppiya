@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5003;
 //Database Connection
 connectDB();
 
-app.use(Auth);
+app.use('/api/auth',Auth);
 
 app.listen(PORT, () =>{
     console.log(`Server Strat ${PORT}`);
