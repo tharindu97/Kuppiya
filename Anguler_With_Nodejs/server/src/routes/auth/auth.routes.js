@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { check, validationResult } from "express-validator";
+import { check } from "express-validator";
+import authBodyValidator from "../../middlewares/auth/authBodyValidator";
 
 const router = Router();
 const authValidation = [
@@ -10,16 +11,13 @@ const authValidation = [
 ];
 
 //Login
-router.post('/login',async (req,res) =>{
+router.post('/login', authValidation, authBodyValidator ,async (req,res) =>{
 
 });
 
 //Register
-router.post('/register', authValidation ,async (req,res) =>{
-    const erros = validationResult(req);
-    if(!erros.isEmpty()){
-        return res.status(400).json({ erros: erros.array() });
-    }
+router.post('/register', authValidation, authBodyValidator ,async (req,res) =>{
+    
 });
 
 export default router;

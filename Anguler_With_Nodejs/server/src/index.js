@@ -7,6 +7,7 @@ import connectDB from './config/db';
 import Auth from './routes/auth/auth.routes';
 
 const app = express();
+app.use(express.json({ extends: true }));
 
 const PORT = process.env.PORT || 5003;
 
