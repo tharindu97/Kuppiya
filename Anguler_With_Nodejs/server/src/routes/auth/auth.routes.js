@@ -3,6 +3,7 @@ import { check } from "express-validator";
 import bcrypt from 'bcryptjs';
 import gravatar from 'gravatar';
 import { model } from 'mongoose';
+import jwt from 'jsonwebtoken';
 
 import authBodyValidator from "../../middlewares/auth/authBodyValidator";
 
@@ -64,6 +65,21 @@ router.post('/login', authValidation, authBodyValidator ,async (req,res) =>{
         if(!isPasswordMatched){
             return res.status(400).json({ error: [{ msg: 'Invalied Password' }] });
         }
+
+        const payload = {
+            email: user.email,
+            image:user.image,
+            _id:user._id
+        };
+        //JWT Token
+        jwt.sign(payload,"jwtsecrect",{ expiresIn: 60 * 60 * 24 },
+            (error,token) =>{
+                if(error){
+                    return res.status(400).json({ error: [{ msg: 'Something went wrong please try again' }] });
+                }
+                return res.status(200).json(token);
+            }
+        );
      } catch (error) {
         console.log(error.message);
         res.status(500).json({ msg: "internal Server Erro" });
