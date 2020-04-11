@@ -26,6 +26,14 @@ router.post('/login', authValidation, authBodyValidator ,async (req,res) =>{
 router.post('/register', authValidation, authBodyValidator ,async (req,res) =>{
     try {
         let { email, password } = req.body;
+
+        const user = await User.findOne({email});
+        if(user){
+            return res.status(400).json({
+                error: [{ msg: 'Email Already Taken, Please Try another Email' }]
+            });
+        }
+
         const image = gravatar.url(email, {
             s:'200',
             r:'pg',
