@@ -17,10 +17,7 @@ const authValidation = [
     })
 ];
 
-//Login
-router.post('/login', authValidation, authBodyValidator ,async (req,res) =>{
 
-});
 
 //Register
 router.post('/register', authValidation, authBodyValidator ,async (req,res) =>{
@@ -46,6 +43,28 @@ router.post('/register', authValidation, authBodyValidator ,async (req,res) =>{
         await newUser.save();
         res.status(200).json(newUser);
     } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ msg: "internal Server Erro" });
+    }
+});
+
+//Login
+router.post('/login', authValidation, authBodyValidator ,async (req,res) =>{
+    try {
+        let { email, password } = req.body;
+
+        const user = await User.findOne({email});
+
+        if(!user){
+            return res.status(400).json({ error: [{ msg: 'Invalied Email' }] });
+        }
+
+        const isPasswordMatched = await bcrypt.compare(password, user.password);
+
+        if(!isPasswordMatched){
+            return res.status(400).json({ error: [{ msg: 'Invalied Password' }] });
+        }
+     } catch (error) {
         console.log(error.message);
         res.status(500).json({ msg: "internal Server Erro" });
     }
